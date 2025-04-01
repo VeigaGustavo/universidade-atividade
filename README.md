@@ -6,12 +6,54 @@ O **Banco de Dados Acadêmico** é um sistema desenvolvido para gerenciar inform
 ## 🔗 Relacionamentos Chave
 
 ```mermaid
-graph TD
-    A[curso] -->|1:N| B[aluno]
-    A -->|M:N| C[disciplina]
-    C -->|M:N| D[professor]
-    B -->|M:N| C
-    B -->|M:N| D
+erDiagram
+    CURSO ||--o{ ALUNO : "possui"
+    CURSO ||--|{ DISCIPLINA_CURSO : "oferece"
+    DISCIPLINA ||--|{ DISCIPLINA_CURSO : "pertence a"
+    DISCIPLINA ||--o{ AULA : "ministrada em"
+    ALUNO ||--o{ AULA : "cursa"
+    PROFESSOR ||--o{ AULA : "ministra"
+
+    CURSO {
+        int id_curso PK
+        int numcurso
+        varchar(40) nome
+        int totalcreditos
+    }
+    
+    ALUNO {
+        int numaluno PK
+        varchar(80) nome
+        varchar(80) endereco
+        varchar(80) cidade
+        varchar(20) telefone
+        int curso_fk FK
+    }
+    
+    PROFESSOR {
+        int numprof PK
+        varchar(80) nome
+        varchar(80) areapesquisa
+    }
+    
+    DISCIPLINA {
+        int numdisp PK
+        varchar(80) nome
+        int quantcreditos
+    }
+    
+    AULA {
+        int aluno_fk PK,FK
+        int disciplina_fk PK,FK
+        int professor_fk PK,FK
+        varchar(7) semestre PK
+        int nota
+    }
+    
+    DISCIPLINA_CURSO {
+        int disciplina_fk PK,FK
+        int curso_fk PK,FK
+    }
 ```
 
 ## 💡 Consultas Úteis (Destaques)
