@@ -69,21 +69,3 @@ GROUP BY c.nome;
    JOIN aula a ON p.numprof = a.professor_fk
    GROUP BY p.nome
    ORDER BY média DESC;
-   ```
-
-## 🛠️ Como Utilizar
-
-1. **Restauração**:
-   ```bash
-   psql -U seu_usuario -d nome_banco -f script_completo.sql
-   ```
-
-2. **Conexão**:
-   ```python
-   # Exemplo Python
-   import psycopg2
-   conn = psycopg2.connect(
-       host="localhost",
-       database="academico",
-       user="usuario",
-       password="senha")
